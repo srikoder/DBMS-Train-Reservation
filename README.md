@@ -17,7 +17,7 @@ Ticket (Future/History)
 PNR number (PK)
 Date (FK to Train)
 Train number (FK to Train)
-Booking Agent
+Booking Agent (FK to Booking Agent ID)
 // Timestamp
 Number of passengers
 Coach Type
