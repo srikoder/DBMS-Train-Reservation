@@ -1,0 +1,53 @@
+train_desc_future, train_desc_history
+
+train_id -> char(5) (PK)
+date_of_journey -> char(8) // 2 + 2 + 4 (PK)
+number_of_AC_coach -> int
+number_of_SL_coach -> int
+remain_AC_seats -> int
+remain_SL_seats -> int
+price_AC -> numeric(7, 2) // max -> 99999.99
+price_SL -> numeric(7, 2) // max -> 99999.99
+
+
+ticket_desc_future, ticket_desc_history
+
+PNR_number -> char(17) (PK) // 5 + 8 + 2 + 2 // train_id, date_of_journey, coach_number, berth_number
+date_of_journey ->  char(8) (FK to train_desc.date_of_journey) // 2 + 2 + 4
+train_id -> char(5) (FK to train_desc.train_id)
+agent_id -> char(5) (FK to agent.agent_id)
+passenger_count -> int
+coach_type -> char(2) // AC or SL
+
+
+passenger_desc_future, passenger_desc_history
+
+passenger_name -> varchar(30)
+age -> int
+gender -> varchar(12)
+PNR_number -> char(17) (FK to ticket_desc.PNR_number) // 5 + 8 + 2 + 2 // train_id, date_of_journey, coach_number, berth_number
+berth_number -> int // max -> 99
+berth_type -> char(2)
+coach_number -> int // max -> 99
+
+
+agent
+
+agent_name -> varchar(30)
+agent_id -> char(5) (PK)
+agent_card -> char(12) // card number
+agent_address -> varchar(40)
+agent_password -> char(8)
+
+
+admin
+
+admin_name -> varchar(30)
+admin_id -> char(5) (PK)
+admin_password -> char(8)
+
+
+coach_desc
+
+berth_number -> int // max -> 99
+berth_type -> char(2) // char(2)
