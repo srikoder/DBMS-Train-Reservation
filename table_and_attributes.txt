@@ -40,7 +40,7 @@ agent_address -> varchar(40)
 agent_password -> char(8)
 
 
-admin
+control_admin
 
 admin_name -> varchar(30)
 admin_id -> char(5) (PK)
