@@ -77,7 +77,7 @@ CREATE TABLE passenger_desc_history (
 	FOREIGN KEY (PNR_number) REFERENCES ticket_desc_history(PNR_number)
 );
 
-CREATE TABLE admin (
+CREATE TABLE control_admin (
 	admin_name VARCHAR(30),
 	admin_id CHAR(5),
 	admin_password CHAR(8)
