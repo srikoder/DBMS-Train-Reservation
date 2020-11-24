@@ -20,6 +20,7 @@ CREATE TABLE train_desc_history (
 	remain_SL_seats INT,
 	price_AC NUMERIC(7, 2),
 	price_SL NUMERIC(7, 2),
+	train_status CHAR(1),
 	PRIMARY KEY (train_id, date_of_journey)
 );
 
