@@ -1,4 +1,4 @@
-/* INSERT train INTO the train table
+/* INSERT train INTO the train table for future only, for the history, raplace the table namoe rest is same
  */
 INSERT INTO
 	train_desc_future
@@ -11,7 +11,8 @@ VALUES
 		remain_AC_seats,
 		remain_SL_seats,
 		price_AC,
-		price_SL
+		price_SL,
+		train_status
 	);
 
 /* INSERT agent INTO agent table
