@@ -8,6 +8,7 @@ remain_AC_seats -> int
 remain_SL_seats -> int
 price_AC -> numeric(7, 2) // max -> 99999.99
 price_SL -> numeric(7, 2) // max -> 99999.99
+train_status -> char(1)
 
 
 ticket_desc_future, ticket_desc_history
