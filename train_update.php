@@ -40,14 +40,15 @@ if(isset($_POST['submit']))
   $train_id=$_POST['train_id'];
   $todaysdate=$_POST['date_id'];
   $arr=explode("-",$todaysdate);
-  $todaysdate=$arr[2].$arr[1].$arr[0];  
+  $todaysdate=$arr[2].$arr[1].$arr[0];
   $ac=$_POST['ac_value'];
   $sl=$_POST['sl_value'];
   //add query
   $remain_ac=18*$ac;
   $remain_sl=24*$sl;
-  $price_ac=0;
-  $price_sl=0;
+  $price_ac=0.0;
+  $price_sl=0.0;
+  $train_status='0';
   echo $train_id;
 
   //$sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
@@ -63,7 +64,7 @@ if(isset($_POST['submit']))
 		'$remain_sl',
 		'$price_ac',
 		'$price_sl',
-    '0'
+    $train_status
 	)";
 
   if ($conn->query($sql) === TRUE) {
@@ -71,9 +72,9 @@ if(isset($_POST['submit']))
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-  echo "    <a href='train_update.php'>Insert New Train</a>";
-  echo "    <a href='train_update.php'>Update Database</a>";
-  echo "    <a href='log_out.php'>Log Out</a>";
+  echo "    <a href='train_update.php'>Insert New Train</a></br>";
+  echo "    <a href='train_update.php'>Update Database</a></br>";
+  echo "    <a href='log_out.php'>Log Out</a></br>";
 
 }
 
