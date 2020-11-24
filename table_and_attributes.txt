@@ -47,7 +47,7 @@ admin_id -> char(5) (PK)
 admin_password -> char(8)
 
 
-coach_desc
+coach_desc_ac, coach_desc_sl
 
 berth_number -> int // max -> 99
 berth_type -> char(2) // char(2)
