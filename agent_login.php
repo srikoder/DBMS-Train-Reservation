@@ -119,7 +119,7 @@ error_reporting(0);
   </head>
   <body>
 
-    <form action="#" method="post">
+    <form action="agent_login.php" method="post">
     <!-- <div>
      <img src="logo.png">
   </div> -->
@@ -136,6 +136,8 @@ error_reporting(0);
       </div>
       <button type="submit" name="submit" ><h3>Login</h3></button>
       <span class="pssw"><a href="#"> Forgot password?</a></span>
+      <span class="pssw"><a href="index.php"> Go Back?</a></span>
+
     </form>
   </body>
 </html>
@@ -151,7 +153,7 @@ if($user!="" && $psw!="" )
 
 // $query="SELECT * FROM USERINFO WHERE 1";
 
-$query="SELECT * FROM USERINFO WHERE ID='$user' && password='$psw'";
+$query="SELECT * FROM agent WHERE agent_id='$user' && agent_password='$psw'";
 
 $data=mysqli_query($conn,$query);
 $total=mysqli_num_rows($data);
@@ -159,6 +161,8 @@ $total=mysqli_num_rows($data);
 
 if($total>0)  //After Accepted
 {
+  header('location:train_check.php');
+  $_SESSION['agent_id']=$user;
   /*
   Enter Code here
   */

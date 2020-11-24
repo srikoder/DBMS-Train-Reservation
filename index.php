@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('connect.php');
 error_reporting(0);
 
@@ -7,9 +6,9 @@ error_reporting(0);
 <!DOCTYPE html>
 <html>
   <head>
-    <script language="javascript" type="text/javascript">
+    <!-- <script language="javascript" type="text/javascript">
       window.history.forward();
-    </script>
+    </script> -->
     <title>LOGIN</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -119,24 +118,13 @@ error_reporting(0);
   </head>
   <body>
 
-    <form action="#" method="post">
-    <!-- <div>
-     <img src="logo.png">
-  </div> -->
-
-
-      <h1><b>Admin  Login</b></h1>
+    <form action="index.php" method="post">
+      <h1><b>Portal</b></h1>
       <div class="formcontainer">
-      <hr>
-      <div class="container">
+      <button type="submit" name="submit1" ><h3>Admin Login</h3></button>
+      <button type="submit" name="submit2" ><h3>Agent Login</h3></button>
+      <button type="submit" name="submit3" ><h3>PNR No. Status</h3></button>
 
-        <input type="text" placeholder="Username" name="user" required>
-        <br>
-        <input type="password" placeholder="Password" name="psw" required>
-      </div>
-      <button type="submit" name="submit" ><h3>Login</h3></button>
-      <span class="pssw"><a href="#"> Forgot password?</a></span>
-      <span class="pssw"><a href="index.php"> Go Back?</a></span>
     </form>
   </body>
 </html>
@@ -144,34 +132,16 @@ error_reporting(0);
 
 
 <?php
-if(isset($_POST['submit'])){
-$user=$_POST['user'];
-$psw=$_POST['psw'];
-if($user!="" && $psw!="" )
-{
-
-// $query="SELECT * FROM USERINFO WHERE 1";
-
-$query="SELECT * FROM control_admin WHERE admin_id='$user' && admin_password='$psw'";
-
-$data=mysqli_query($conn,$query);
-$total=mysqli_num_rows($data);
-// echo $total;
-
-if($total>0)  //After Accepted
-{
-  header('location:train_update.php');
-  /*
-  Enter Code here
-  */
+if(isset($_POST['submit1'])){
+  header('location:admin_login.php');
 }
-else if($total==0)
+if(isset($_POST['submit2']))
 {
-  echo "<br><h5>Plz enter correct username or password</h5>";
+  header('location:agent_login.php');
 }
-
-
-}
+if(isset($_POST['submit3']))
+{
+  header('location:pnr_status.php');
 }
 
  ?>
