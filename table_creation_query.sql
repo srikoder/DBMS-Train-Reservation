@@ -83,4 +83,52 @@ CREATE TABLE control_admin (
 	admin_password CHAR(8)
 );
 
-CREATE TABLE coach_desc (berth_number INT, berth_type CHAR(2))
+CREATE TABLE coach_desc_ac (berth_number INT, berth_type CHAR(2));
+
+CREATE TABLE coach_desc_sl (berth_number INT, berth_type CHAR(2));
+
+/* queries to initialise the coach_desc_ac table */
+insert into coach_desc_ac values(1, LB);
+insert into coach_desc_ac values(2, LB);
+insert into coach_desc_ac values(3, UB);
+insert into coach_desc_ac values(4, UB);
+insert into coach_desc_ac values(5, SL);
+insert into coach_desc_ac values(6, SU);
+insert into coach_desc_ac values(7, LB);
+insert into coach_desc_ac values(8, LB);
+insert into coach_desc_ac values(9, UB);
+insert into coach_desc_ac values(10, UB);
+insert into coach_desc_ac values(11, SL);
+insert into coach_desc_ac values(12, SU);
+insert into coach_desc_ac values(13, LB);
+insert into coach_desc_ac values(14, LB);
+insert into coach_desc_ac values(15, UB);
+insert into coach_desc_ac values(16, UB);
+insert into coach_desc_ac values(17, SL);
+insert into coach_desc_ac values(18, SU);
+
+/* queries to initialise the coach_desc_sl table */
+insert into coach_desc_ac values(1, LB);
+insert into coach_desc_ac values(2, MB);
+insert into coach_desc_ac values(3, UB);
+insert into coach_desc_ac values(4, LB);
+insert into coach_desc_ac values(5, MB);
+insert into coach_desc_ac values(6, UB);
+insert into coach_desc_ac values(7, SL);
+insert into coach_desc_ac values(8, SU);
+insert into coach_desc_ac values(9, LB);
+insert into coach_desc_ac values(10, MB);
+insert into coach_desc_ac values(11, UB);
+insert into coach_desc_ac values(12, LB);
+insert into coach_desc_ac values(13, MB);
+insert into coach_desc_ac values(14, UB);
+insert into coach_desc_ac values(15, SL);
+insert into coach_desc_ac values(16, SU);
+insert into coach_desc_ac values(17, LB);
+insert into coach_desc_ac values(18, MB);
+insert into coach_desc_ac values(19, UB);
+insert into coach_desc_ac values(20, LB);
+insert into coach_desc_ac values(21, MB);
+insert into coach_desc_ac values(22, UB);
+insert into coach_desc_ac values(23, SL);
+insert into coach_desc_ac values(24, SU);
