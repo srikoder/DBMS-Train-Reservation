@@ -20,17 +20,12 @@ $pnr=$_SESSION['pnr'];
 $todaysdate=$_SESSION['datee'];
 $train_id=$_SESSION['train_id'];
 $agent_id=$_SESSION['agent_id'];
-$passanger=$_SESSION['passanger'];
+$passenger=$_SESSION['passenger'];
+$coach_number=$_SESSION['coach_number'];
 $coach_no=$_SESSION['coach_no'];
-if($_SESSION['select']=='1')
-{
-  $coach_type='AC';
-
-}
-if($_SESSION['select']=='2')
-{
-  $coach_type='SL';
-}
+$coach_type=$_SESSION['seat'];
+$berth_number=$_SESSION['berth_number'];
+$berth_type="";
   //run ticket query
   $sql="INSERT INTO
   ticket_desc_future
@@ -40,7 +35,7 @@ if($_SESSION['select']=='2')
 		'$todaysdate',
 		'$train_id',
 		'$agent_id',
-		'$passanger',
+		'$passenger',
 		'$coach_type'
   )";
 
@@ -50,12 +45,19 @@ if($_SESSION['select']=='2')
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
-  while($passanger>0)
+  while($passenger>0)
   {
     // run individual queries
-    $name=$_POST['pass'.$passanger];
-    $age=$_POST['age'.$passanger];
-    $gender=$_POST['$gen'.$passanger];
+    $name=$_POST['pass'.$passenger];
+    $age=$_POST['age'.$passenger];
+    $gender=$_POST['$gen'.$passenger];
+
+//berth type...
+$sql3=mysqli_query($conn,"select * from coach_desc where berth_number=='$berth_number'")  or die("Error");
+while($row=mysqli_fetch_array($sql3))
+{
+  $berth_type=$row['berth_type'];
+}
 
 
     $sql2="INSERT INTO
@@ -71,13 +73,24 @@ VALUES
 		'$coach_number'
 	)";
   if ($conn->query($sql2) === TRUE) {
-    echo "passanger On board successfully";
+    echo "passenger On board successfully";
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql2 . "<br>" . $conn->error;
   }
 
   //  echo $x;
-    $passanger--;
+    $passenger--;
+    $coach_no++;
+    if($seat=='AC')
+    {
+        $coach_number=$coach_no/18+1;
+        $berth_number=$coach_no%18+1;
+    }
+    if($seat=='SL')
+    {
+        $coach_number=$coach_no/24+1;
+        $berth_number=$coach_no%24+1;
+    }
   }
-  echo "<a href='pnr_status.php'>Check PNR Status</a>"
+  echo "</br><a href='pnr_status.php'>Check PNR Status</a>"
  ?>
