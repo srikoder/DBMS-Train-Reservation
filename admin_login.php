@@ -130,7 +130,7 @@ error_reporting(0);
       <hr>
       <div class="container">
 
-        <input type="text" placeholder="Username" name="user" required>
+        <input type="text" placeholder="Admin ID" name="user" required>
         <br>
         <input type="password" placeholder="Password" name="psw" required>
       </div>
@@ -167,7 +167,7 @@ if($total>0)  //After Accepted
 }
 else if($total==0)
 {
-  echo "<br><h5>Plz enter correct username or password</h5>";
+  echo "<h5>Plz enter correct username or password</h5>";
 }
 
 
