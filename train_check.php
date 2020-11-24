@@ -45,34 +45,39 @@ session_start();
     if($todaysdate!="")
     {
     $arr=explode("-",$todaysdate);
-    $todaysdate=$arr[2].$arr[1].$arr[0];  
+    $todaysdate=$arr[2].$arr[1].$arr[0];
     $_SESSION['datee']=$todaysdate;
   }
     $train_id=$_POST['train_id'];
     if($train_id!="")
     {
-      $sql2=mysqli_query($conn,"select * from train_desc_future where train_id=='$train_id' && date_of_journey=='$todaysdate' and train_status=='0' ")  or die("Error");
+      $_SESSION['train_id']=$train_id;
+
+      $sql2=mysqli_query($conn,"select * from train_desc_future where train_id=='$train_id' && date_of_journey=='$todaysdate' && train_status=='0' ")  or die("Error2");
       while($row=mysqli_fetch_array($sql2))
       {
       echo "<br>Train ID: ".$train_id;
       echo "<br>Date of Running: ".$_SESSION['datee'];
       $_SESSION['remain_ac']=$row['remain_AC_seats'];
-      $_SESSION['remain_sl']=$row['remain_sL_seats']
+      $_SESSION['remain_sl']=$row['remain_sL_seats'];
       echo "<br>Available AC coachs: ".$row['remain_AC_seats'];
       echo "<br>Available Sleeper Coachs: ".$row['remain_SL_seats'];
     }
-    $_SESSION['trainid']=$train_id;
 
     echo "<br><a href='book.php'>Proceed for Booking the Seats</a>";
     }
 
 
-
-    echo "<br>Available Trains on Date: ". $_SESSION['datee'];
+    if(isset($_POST['button'])){
     // echo $todays_date;
-    $sql=mysqli_query($conn,"select * from train_desc_future where date_of_journey=='$todaysdate'")  or die("Error");
+    $todaysdate=$_SESSION['datee'];
+    $sql="select * from train_desc_future where date_of_journey=='$todaysdate'";
   //  $sql=mysqli_query($conn,"select * from entries where ddate='$todaysdate'")  or die("Error");
-
+  if ($conn->query($sql2) === TRUE) {
+    echo "<br>Available Trains on Date: ". $_SESSION['datee'];
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
     echo "<table border='1'>
     <tr>
     <th>Train_ID</th>
@@ -87,5 +92,6 @@ session_start();
 
     }
     echo"</table>";
+  }
 
      ?>
