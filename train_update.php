@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
   $train_id=$_POST['train_id'];
   $todaysdate=$_POST['date_id'];
   $arr=explode("-",$todaysdate);
-  $todaysdate=$arr[2].$arr[1].$arr[0];
+  $todaysdate=$arr[0].$arr[1].$arr[2];
   $ac=$_POST['ac_value'];
   $sl=$_POST['sl_value'];
   //add query
