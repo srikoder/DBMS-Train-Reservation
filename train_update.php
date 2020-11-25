@@ -31,9 +31,44 @@ error_reporting(0);
       </div>
       <button type="submit" class="button button1"name="submit">Insert Train Into System</button>
     </form>
+    <form class="" action="train_update.php" method="post">
+      <button type="submit" name="button">Update Database</button>
+    </form>
+    <a href='log_out.php'>Log Out</a></br>
+
   </body>
 </html>
 <?php
+
+if(isset($_POST['button']))
+{
+  $date = date('Y/m/d');
+  $arr=explode("/",$date);
+  $date=$arr[0].$arr[1].$arr[2];
+  echo "todays date is:". $date;
+
+  $sql1="INSERT INTO
+	train_desc_future
+  VALUES
+	(
+		'$train_id',
+		'$todaysdate',
+		'$ac',
+		'$sl',
+		'$remain_ac',
+		'$remain_sl',
+		'$price_ac',
+		'$price_sl',
+    $train_status
+	)";
+
+  if ($conn->query($sql1) === TRUE) {
+    echo "Database Optimised successfully";
+  } else {
+    echo "Error: " . $sql1 . "<br>" . $conn->error;
+  }
+
+}
 //write $query
 if(isset($_POST['submit']))
 {
@@ -69,12 +104,11 @@ if(isset($_POST['submit']))
 
   if ($conn->query($sql) === TRUE) {
     echo "New train inserted successfully";
+    echo "    <a href='train_update.php'>Insert New Train</a></br>";
+
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-  echo "    <a href='train_update.php'>Insert New Train</a></br>";
-  echo "    <a href='train_update.php'>Update Database</a></br>";
-  echo "    <a href='log_out.php'>Log Out</a></br>";
 
 }
 
