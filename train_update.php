@@ -47,20 +47,7 @@ if(isset($_POST['button']))
   $date=$arr[0].$arr[1].$arr[2];
   echo "todays date is:". $date;
 
-  $sql1="INSERT INTO
-	train_desc_future
-  VALUES
-	(
-		'$train_id',
-		'$todaysdate',
-		'$ac',
-		'$sl',
-		'$remain_ac',
-		'$remain_sl',
-		'$price_ac',
-		'$price_sl',
-    $train_status
-	)";
+   $sql1="SELECT eod('$date')";
 
   if ($conn->query($sql1) === TRUE) {
     echo "Database Optimised successfully";
