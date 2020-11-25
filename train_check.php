@@ -48,45 +48,44 @@ session_start();
     $todaysdate=$arr[0].$arr[1].$arr[2];
     $_SESSION['datee']=$todaysdate;
   }
-    $train_id=$_POST['train_id'];
-    if($train_id!="")
+    if(isset($_POST['button2']))
     {
-      $_SESSION['train_id']=$train_id;
+      $train_id=$_POST['train_id'];
 
-      $sql2=mysqli_query($conn,"select * from train_desc_future where train_id=='$train_id' && date_of_journey=='$todaysdate' && train_status=='0' ")  or die("Error2");
+      $_SESSION['train_id']=$train_id;
+      $todaysdate=$_SESSION['datee'];
+      $sql2=mysqli_query($conn,"select * from train_desc_future where train_id='$train_id' && date_of_journey='$todaysdate' && train_status='0' ")  or die("Error2");
+      //print_r($sql2);
       while($row=mysqli_fetch_array($sql2))
       {
       echo "<br>Train ID: ".$train_id;
       echo "<br>Date of Running: ".$_SESSION['datee'];
       $_SESSION['remain_ac']=$row['remain_AC_seats'];
-      $_SESSION['remain_sl']=$row['remain_sL_seats'];
+      $_SESSION['remain_sl']=$row['remain_SL_seats'];
       echo "<br>Available AC coachs: ".$row['remain_AC_seats'];
       echo "<br>Available Sleeper Coachs: ".$row['remain_SL_seats'];
-    }
+      echo "<br><a href='book.php'>Proceed for Booking the Seats</a>";
 
-    echo "<br><a href='book.php'>Proceed for Booking the Seats</a>";
+    }
     }
 
 
     if(isset($_POST['button'])){
     // echo $todays_date;
     $todaysdate=$_SESSION['datee'];
-    $sql="select * from train_desc_future where date_of_journey=='$todaysdate'";
-  //  $sql=mysqli_query($conn,"select * from entries where ddate='$todaysdate'")  or die("Error");
-  if ($conn->query($sql2) === TRUE) {
-    echo "<br>Available Trains on Date: ". $_SESSION['datee'];
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+  $sql3=mysqli_query($conn,"SELECT * FROM train_desc_future WHERE date_of_journey='$todaysdate'")  or die("Error2");
+  echo "<br>Available Trains on Date: ". $_SESSION['datee'];
+
+
     echo "<table border='1'>
     <tr>
     <th>Train_ID</th>
     <th>Train Names </th>
 
     </tr>";
-    while($row = mysqli_fetch_array($sql)) {
+    while($row = mysqli_fetch_array($sql3)) {
       echo "<tr>";
-    echo "<td>" . $row['registration_Number'] . "</td>";
+    echo "<td>" . $row['train_id'] . "</td>";
     // echo "<td>" . $row['doctor'] . "</td>";
     echo "</tr>";
 
