@@ -45,7 +45,7 @@ session_start();
     if($todaysdate!="")
     {
     $arr=explode("-",$todaysdate);
-    $todaysdate=$arr[2].$arr[1].$arr[0];
+    $todaysdate=$arr[0].$arr[1].$arr[2];
     $_SESSION['datee']=$todaysdate;
   }
     $train_id=$_POST['train_id'];
