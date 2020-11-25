@@ -53,7 +53,10 @@ $berth_type="";
     $gender=$_POST['$gen'.$passenger];
 
 //berth type...
-$sql3=mysqli_query($conn,"select * from coach_desc where berth_number=='$berth_number'")  or die("Error");
+if($coach_type=='SL'){
+$sql3=mysqli_query($conn,"select * from coach_desc_sl where berth_number='$berth_number'")  or die("Error");}
+if($coach_type=='AC'){
+$sql3=mysqli_query($conn,"select * from coach_desc_ac where berth_number='$berth_number'")  or die("Error");}
 while($row=mysqli_fetch_array($sql3))
 {
   $berth_type=$row['berth_type'];
@@ -80,13 +83,13 @@ VALUES
 
   //  echo $x;
     $passenger--;
-    $coach_no++;
-    if($seat=='AC')
+    $coach_no--;
+    if($coach_type=='AC')
     {
         $coach_number=$coach_no/18+1;
         $berth_number=$coach_no%18+1;
     }
-    if($seat=='SL')
+    if($coach_type=='SL')
     {
         $coach_number=$coach_no/24+1;
         $berth_number=$coach_no%24+1;
