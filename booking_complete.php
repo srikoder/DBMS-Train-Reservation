@@ -10,7 +10,7 @@ session_start();
     <title>Hello</title>
   </head>
   <body>
-    <a href="index.php">Go Back!!!</a>
+    <a href="log_out.php">Log Out!!!</a>
     <br>
     <hr>
   </body>
@@ -40,7 +40,7 @@ $berth_type="";
   )";
 
   if ($conn->query($sql) === TRUE) {
-    echo "New ticket with PNR No.".$pnr." generated successfully";
+    echo "New ticket with PNR No.".$pnr." generated successfully<br>";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
@@ -50,13 +50,15 @@ $berth_type="";
     // run individual queries
     $name=$_POST['pass'.$passenger];
     $age=$_POST['age'.$passenger];
-    $gender=$_POST['$gen'.$passenger];
+    $gender=$_POST['gen'.$passenger];
 
 //berth type...
 if($coach_type=='SL'){
-$sql3=mysqli_query($conn,"select * from coach_desc_sl where berth_number='$berth_number'")  or die("Error");}
-if($coach_type=='AC'){
-$sql3=mysqli_query($conn,"select * from coach_desc_ac where berth_number='$berth_number'")  or die("Error");}
+$sql3=mysqli_query($conn,"select * from coach_desc_sl where berth_number='$berth_number'")  or die("Error");
+$coach_number+=$_SESSION['total_ac'];}
+else if($coach_type=='AC'){
+$sql3=mysqli_query($conn,"select * from coach_desc_ac where berth_number='$berth_number'")  or die("Error");
+}
 while($row=mysqli_fetch_array($sql3))
 {
   $berth_type=$row['berth_type'];
@@ -76,7 +78,7 @@ VALUES
 		'$coach_number'
 	)";
   if ($conn->query($sql2) === TRUE) {
-    echo "passenger On board successfully";
+    echo "<br>passenger On board successfully";
   } else {
     echo "Error: " . $sql2 . "<br>" . $conn->error;
   }
@@ -86,14 +88,15 @@ VALUES
     $coach_no--;
     if($coach_type=='AC')
     {
-        $coach_number=$coach_no/18+1;
+        $coach_number=ceil($coach_no/18);
         $berth_number=$coach_no%18+1;
     }
-    if($coach_type=='SL')
+    else if($coach_type=='SL')
     {
-        $coach_number=$coach_no/24+1;
+        $coach_number=ceil($coach_no/24);
         $berth_number=$coach_no%24+1;
     }
   }
   echo "</br><a href='pnr_status.php'>Check PNR Status</a>"
+
  ?>

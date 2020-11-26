@@ -7,38 +7,208 @@ session_start();
   $todaysdate=$_SESSION['datee'];
 
   // run query for ac seats;
-  echo "<hr><br>Train ID: ".$train_id;
+  echo "<div class=imp1>Train ID: ".$train_id;
   echo "<br>Date of Running: ".$todaysdate;
   echo "<br>Available AC coachs: ".$_SESSION['remain_ac'];
-  echo "<br>Available Sleeper Coachs: ".$_SESSION['remain_sl'];
+  echo "<br>Available Sleeper Coachs: ".$_SESSION['remain_sl']."</div>";
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Take Attendence</title>
     <link rel="stylesheet" href="">
     <!-- <script type="text/javascript" src="script.js"></script> -->
-  </head>
-  <body>
-<h4>Booking Details</h4>
-<form class="formm" action="book.php" method="post">
-  <div class="passenger_no">
-    <label for="">Total passengers:-</label>
-    <input type="text" name="passenger_count" value="">
-  </div>
-  <div>
-    <label for="">Seats Type:-</label>
-    <input type='radio' name='seat' value='SL'> Sleeper
-    <input type='radio' name='seat' value='AC'> AC
-  </div>
-  <div>
-    <!-- <input type="date" name="date_id"> -->
-    <!-- <button onclick="myFunction1()">A</button> -->
-    <button type="submit" class="button button1" name="button">Next</button>
-  </div>
-</form>
-  </body>
+    <style>
+        * {
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+
+        body {
+            display: grid;
+            /* justify-content: center; */
+            align-items: center;
+            background-image: url("https://cdn.pixabay.com/photo/2014/06/18/13/20/departure-platform-371218_1280.jpg");
+            /* background-repeat: repeat-y; */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .imp {
+            font-size: large;
+            color: black;
+            background-color: #cbcac8a8;
+            text-align: center;
+            width: 45%;
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 18px;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 15px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .imp1 {
+          align-items: center;
+            font-size: large;
+            color: black;
+            background-color: #cbcac8a8;
+            text-align: center;
+            width:40%;
+            display: block;
+            margin-top: 10px;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 15px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .imp2 {
+          align-items: center;
+            font-size: large;
+            color: black;
+            background-color: #cbcac8a8;
+            text-align: center;
+            width:40%;
+            display: block;
+            margin-top: 10px;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 15px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            margin: 0px;
+            padding: 0px;
+            color: brown;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            border: 2px solid black;
+            font-size: 24px;
+            text-align: center;
+            height: 31px;
+            border-radius: 10px;
+            width: 100%;
+            margin: auto;
+            display: inline;
+        }
+
+        input[type="radio"] {
+            height: 2em;
+            width: 3%;
+            display: inline;
+            margin: 0px;
+            /* border: 2px solid black; */
+        }
+
+        button {
+            border: 3px solid black;
+            margin-left: auto;
+            font-size: 24px;
+            text-align: center;
+            height: 40px;
+            border-radius: 10px;
+            width: 60%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            /* margin: 5px auto; */
+            height: 50px;
+            border-radius: 10px;
+            width: 70%;
+            background-color: black;
+            color: rgb(255, 255, 255);
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 31px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        a {
+            position: relative;
+            top: 10px;
+            text-decoration: none;
+            /* background-color: rgb(155, 155, 155, 0.6); */
+            color: rgb(0, 0, 0);
+        }
+
+        a:hover {
+            text-decoration: none;
+            background-color: black;
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            padding: 7px;
+            margin-top: 10px;
+        }
+
+        p {
+            display: inline;
+            margin: 0px;
+            color: rgb(255, 0, 0);
+        }
+
+        .ac {
+            display: inline;
+            /* margin-right: 121px; */
+        }
+
+        .sleeper {
+            display: inline;
+            /* margin-right: 53px; */
+        }
+
+        .trouble {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imp">
+        <h1>Booking Details</h1>
+        <form class="formm" action="book.php" method="post">
+
+            <label for="">Total passengers:-</label>
+            <input type="text" name="passenger_count" value="">
+
+
+            <label for="">Seats Type:-</label>
+            <div class="trouble">
+                <div class="sleeper">
+                    <input type='radio' name='seat' value='SL'>
+                    <p> SLEEPER</p>
+                </div>
+                <div class="ac">
+                    <input type='radio' name='seat' value='AC'>
+                    <p>AC</p>
+                </div>
+            </div>
+
+            <div>
+                <!-- <input type="date" name="date_id"> -->
+                <!-- <button onclick="myFunction1()">A</button> -->
+                <button type="submit" class="button button1" name="button">Next</button>
+            </div>
+        </form>
+        <a href="log_out.php">Log Out...</a>
+    </div>
+
+</body>
+
 </html>
 <?php
 if(isset($_POST['button'])){
@@ -54,19 +224,19 @@ if(isset($_POST['button'])){
   {
     if($_SESSION['remain_ac']<$passenger)
     {
-      echo "Error  <hr>".$passenger." Seats not Available";
+      echo "<div class=imp1>Error  <hr>".$passenger." Seats not Available</div>";
       $check=0;
 
     }
     else {
       $coach_no=$_SESSION['remain_ac'];
       $_SESSION['coach_no']=$coach_no;
-      $coach_number=$coach_no/18+1;
+      $coach_number=ceil($coach_no/18);
       $berth_number=$coach_no%18+1;
 
     }
   }
-  if($seat=='SL')
+    else if($seat=='SL')
   {
     if($_SESSION['remain_sl']<$passenger)
     {
@@ -76,7 +246,7 @@ if(isset($_POST['button'])){
     else {
       $coach_no=$_SESSION['remain_sl'];
       $_SESSION['coach_no']=$coach_no;
-      $coach_number=$coach_no/24+1;
+      $coach_number=ceil($coach_no/24)+$_SESSION['total_ac'];
       $berth_number=$coach_no%24+1;
 
     }
@@ -91,7 +261,7 @@ if(isset($_POST['button'])){
   $_SESSION['pnr']=$pnr;
   $x=$passenger;
   if($x>0){
-  echo "Generated PNR no:-".$pnr."<br>";
+  echo "<div class=imp2>Generated PNR no:-".$pnr."<br>";
   echo "<form action='booking_complete.php' method='post'>";
   while($x>0)
   {
@@ -105,7 +275,7 @@ if(isset($_POST['button'])){
     echo"<br>";
   }
 echo "<button type='submit' class='button button1' name='button'>Complete Registration</button>";
-  echo "</form>";
+  echo "</form></div>";
 }
 }
 }
