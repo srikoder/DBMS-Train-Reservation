@@ -133,7 +133,7 @@ error_reporting(0);
 
 <?php
 if(isset($_POST['submit1'])){
-  header('location:admin_login.php');;
+  header('location:admin_login.php');
 }
 if(isset($_POST['submit2']))
 {
