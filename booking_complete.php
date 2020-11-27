@@ -89,12 +89,12 @@ VALUES
     if($coach_type=='AC')
     {
         $coach_number=ceil($coach_no/18);
-        $berth_number=$coach_no%18+1;
+        $berth_number=($_SESSION['total_ac']*18-$coach_no)%18+1;
     }
     else if($coach_type=='SL')
     {
         $coach_number=ceil($coach_no/24);
-        $berth_number=$coach_no%24+1;
+        $berth_number=($_SESSION['total_sl']*24-$coach_no)%24+1;
     }
   }
   echo "</br><a href='pnr_status.php'>Check PNR Status</a>"

@@ -232,7 +232,7 @@ if(isset($_POST['button'])){
       $coach_no=$_SESSION['remain_ac'];
       $_SESSION['coach_no']=$coach_no;
       $coach_number=ceil($coach_no/18);
-      $berth_number=$coach_no%18+1;
+      $berth_number=($_SESSION['total_ac']*18-$coach_no)%18+1;
 
     }
   }
@@ -246,15 +246,46 @@ if(isset($_POST['button'])){
     else {
       $coach_no=$_SESSION['remain_sl'];
       $_SESSION['coach_no']=$coach_no;
-      $coach_number=ceil($coach_no/24)+$_SESSION['total_ac'];
-      $berth_number=$coach_no%24+1;
+      $coach_number=ceil($coach_no/24);
+      $berth_number=($_SESSION['total_sl']*24-$coach_no)%24+1;
 
     }
   }
   // generate PNR Number
   // insert Ticket into ticket mysql
+  $n="-";
   if($check){
-  $pnr=$train_id.$todaysdate.$coach_number.$berth_number;
+    if($seat=='AC')
+    {
+      if(strlen((string)$coach_number)==1 && strlen((string)$berth_number)==1)
+      {
+      $pnr=$train_id.$todaysdate."0".$coach_number."0".$berth_number;
+      }
+      else if(strlen((string)$coach_number)==1 && strlen((string)$berth_number)!=1)
+      {
+      $pnr=$train_id.$todaysdate."0".$coach_number.$berth_number;
+      }
+      else if(strlen((string)$coach_number)!=1 && strlen((string)$berth_number)==1)
+      {
+      $pnr=$train_id.$todaysdate.$coach_number."0".$berth_number;
+      }
+    }
+    else if ($seat=='SL')
+    {
+      $a=$coach_number+$_SESSION['total_ac'];
+      if(strlen((string)$a)==1 && strlen((string)$berth_number)==1)
+      {
+      $pnr=$train_id.$todaysdate."0".$a."0".$berth_number;
+      }
+      else if(strlen((string)$a)==1 && strlen((string)$berth_number)!=1)
+      {
+      $pnr=$train_id.$todaysdate."0".$a.$berth_number;
+      }
+      else if(strlen((string)$a)!=1 && strlen((string)$berth_number)==1)
+      {
+      $pnr=$train_id.$todaysdate.$a."0".$berth_number;
+      }
+    }
   $_SESSION['coach_number']=$coach_number;
   $_SESSION['berth_number']=$berth_number;
 
