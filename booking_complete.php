@@ -97,6 +97,23 @@ VALUES
         $berth_number=($_SESSION['total_sl']*24-$coach_no)%24+1;
     }
   }
-  echo "</br><a href='pnr_status.php'>Check PNR Status</a>"
+
+  $sql4=mysqli_query($conn,"select * from train_desc_future where train_id='$train_id' && date_of_journey='$todaysdate' && train_status='0' ")  or die("Error2");
+  while($row=mysqli_fetch_array($sql4))
+  {
+    if($row['remain_AC_seats']==0 && $row['remain_SL_seats']==0)
+    {
+      $sql5 = "UPDATE train_desc_future SET train_status='1' WHERE train_id='$train_id' && date_of_journey='$todaysdate'";
+
+      if ($conn->query($sql5) === TRUE) {
+        echo "<br>Train Full. No more Insertions Possible";
+      } else {
+        echo "Error updating record: " . $conn->error;
+      }
+    }
+  }
+
+
+  echo "<hr></br><a href='pnr_status.php'>Check PNR Status</a>"
 
  ?>
