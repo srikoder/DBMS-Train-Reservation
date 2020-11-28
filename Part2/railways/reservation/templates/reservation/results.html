@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+    <h3>The following trains are available:</h3>
+
+    {% if direct %}
+        <div class="card" >
+            <div class="card-title"><h4> Direct Trains </h4></div>
+            
+
+            <div class="card-body">
+                <table class="table">
+                    <tr> 
+                        <th scope="col"> Train ID </td>
+                        <td> Departure </td>
+                        <td> Arrival </td>
+                        <td> Destination </td>
+                    </tr>
+                    {% for key in direct %}
+                        <tr>
+                            <td>{{ key.trainID }}</td>
+                            <td>{{ key.departureTime }}</td>   
+                            <td>{{ key.arrivalTime }} </td>  
+                            <td> {{ key.destination }} </td>       
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            
+        </div>
+        
+
+    {% endif %}
+
+    {% if Chennai %}
+    <div class="card" >
+        <div class="card-title"><h4> Trains via Chennai </h4></div>
+        <div class="card-body">
+            <table class="table">
+                <tr> 
+                    <th scope="col"> Train ID </td>
+                    <td> Departure </td>
+                    <td> Arrival </td>
+                    <td> Destination </td>
+                    <td> Trains from Chennai </td>
+                </tr>
+                {% for key, val in Chennai.items %}
+                    <tr>
+                        <td>{{ key.trainID }}</td>
+                        <td>{{ key.departureTime }}</td>   
+                        <td>{{ key.arrivalTime }} </td>  
+                        <td> {{ key.destination }} </td>   
+    
+                        <td> 
+                            {% for value in val %} 
+                                {{ value.trainID }} 
+                                {{ value.departureTime }}
+                                {{ value.arrivalTime }}
+                                {{ value.destination }}
+                                <br>
+    
+                            {% endfor %}
+                        </td>        
+                    </tr>
+                {% endfor %}
+            </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if Hyderabad %}
+        <div class="card" >
+        <div class="card-title"><h4> Trains via Hyderabad </h4></div>
+        
+        <div class="card-body">
+            <table class="table">
+                <tr> 
+                    <th scope="col"> Train ID </td>
+                    <td> Departure </td>
+                    <td> Arrival </td>
+                    <td> Destination </td>
+                    <td> Trains from Hyderabad </td>
+                </tr>
+                {% for key, val in Hyderabad.items %}
+                    <tr>
+                        <td>{{ key.trainID }}</td>
+                        <td>{{ key.departureTime }}</td>   
+                        <td>{{ key.arrivalTime }} </td>  
+                        <td> {{ key.destination }} </td>   
+    
+                        <td> 
+                            {% for value in val %} 
+                                {{ value.trainID }} 
+                                {{ value.departureTime }}
+                                {{ value.arrivalTime }}
+                                {{ value.destination }}
+                                <br>
+                            {% endfor %}
+                        </td>        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+
+    {% endif %}
+
+    {% if Mumbai %}
+    <div class="card" >
+        <div class="card-title"><h4> Trains via Mumbai </h4></div>
+        
+        <div class="card-body">
+            <table class="table">
+                <tr> 
+                    <th scope="col"> Train ID </td>
+                    <td> Departure </td>
+                    <td> Arrival </td>
+                    <td> Destination </td>
+                    <td> Trains from Mumbai </td>
+                </tr>
+                {% for key, val in Mumbai.items %}
+                    <tr>
+                        <td>{{ key.trainID }}</td>
+                        <td>{{ key.departureTime }}</td>   
+                        <td>{{ key.arrivalTime }} </td>  
+                        <td> {{ key.destination }} </td>   
+    
+                        <td> 
+                            {% for value in val %} 
+                                {{ value.trainID }} 
+                                {{ value.departureTime }}
+                                {{ value.arrivalTime }}
+                                {{ value.destination }}
+                                <br>
+                            {% endfor %}
+                        </td>        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        </div>
+    {% endif %}
+
+    {% if Bhopal %}
+    <div class="card" >
+        <div class="card-title"> <h4> Trains via Bhopal </h4></div>
+       
+        <div class="card-body">
+            <table class="table">
+                <tr> 
+                    <th scope="col"> Train ID </td>
+                    <td> Departure </td>
+                    <td> Arrival </td>
+                    <td> Destination </td>
+                    <td> Trains from Bhopal </td>
+                </tr>
+                {% for key, val in Bhopal.items %}
+                    <tr>
+                        <td>{{ key.trainID }}</td>
+                        <td>{{ key.departureTime }}</td>   
+                        <td>{{ key.arrivalTime }} </td>  
+                        <td> {{ key.destination }} </td>   
+    
+                        <td> 
+                            {% for value in val %} 
+                                {{ value.trainID }} 
+                                {{ value.departureTime }}
+                                {{ value.arrivalTime }}
+                                {{ value.destination }}
+                                <br>
+                            {% endfor %}
+                        </td>        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        </div>
+    {% endif %}
+
+    {% if Delhi %}
+        <div class="card" >
+        <div class="card-title"><h4> Trains via Delhi </h4></div>
+        
+        <div class="card-body">
+            <table class="table">
+                <tr> 
+                    <th scope="col"> Train ID </td>
+                    <td> Departure </td>
+                    <td> Arrival </td>
+                    <td> Destination </td>
+                    <td> Trains from Delhi </td>
+                </tr>
+                {% for key, val in Delhi.items %}
+                    <tr>
+                        <td>{{ key.trainID }}</td>
+                        <td>{{ key.departureTime }}</td>   
+                        <td>{{ key.arrivalTime }} </td>  
+                        <td> {{ key.destination }} </td>   
+    
+                        <td> 
+                            {% for value in val %} 
+                                {{ value.trainID }} 
+                                {{ value.departureTime }}
+                                {{ value.arrivalTime }}
+                                {{ value.destination }}
+                                <br>
+                            {% endfor %}
+                        </td>        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        </div>
+    {% endif %}
+    </div>
+</body>
+</html>
+    
